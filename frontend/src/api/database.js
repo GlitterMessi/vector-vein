@@ -7,9 +7,9 @@
 import baseAPI from './base'
 
 export async function databaseAPI(action, parameter) {
-  return await baseAPI(`database__${action}`, parameter)
+  return await baseAPI(`database/${action}`, parameter)
 }
 
 export async function databaseObjectAPI(action, parameter) {
-  return await baseAPI(`database_object__${action}`, parameter)
+  return await baseAPI(`database_object/${action}`, parameter)
 }

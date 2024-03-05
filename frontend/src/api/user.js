@@ -7,9 +7,9 @@
 import baseAPI from './base'
 
 export async function userInfoAPI(action, parameter) {
-    return await baseAPI(`user_info__${action}`, parameter)
+    return await baseAPI(`user_info/${action}`, parameter)
 }
 
 export async function settingAPI(action, parameter) {
-    return await baseAPI(`setting__${action}`, parameter)
+    return await baseAPI(`setting/${action}`, parameter)
 }

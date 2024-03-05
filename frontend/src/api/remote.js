@@ -7,5 +7,5 @@
 import baseAPI from './base'
 
 export async function officialSiteAPI(action, parameter) {
-    return await baseAPI(`official_site__${action}`, parameter)
+    return await baseAPI(`official_site/${action}`, parameter)
 }

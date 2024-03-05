@@ -39,7 +39,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       server: {
         proxy: {
           '/api': {
-            target: `http://127.0.0.1:8888/api`,
+            target: `http://127.0.0.1:8000/api/`,
             ws: true,
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, ""),
