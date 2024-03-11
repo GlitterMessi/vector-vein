@@ -6,7 +6,7 @@
  */
 'use strict';
 import { message } from 'ant-design-vue'
-import { workflowAPI } from "@/api/workflow"
+import { workflowAPI } from "@/api/workflow.ts"
 
 export function hasShowFields(node) {
   let hasShow = false

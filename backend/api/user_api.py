@@ -22,7 +22,7 @@ class SettingAPI(APIRouter):
             else:
                 setting = Setting.select().order_by(Setting.create_time.desc()).first()
             setting = model_serializer(setting)
-            response = {"status": 200, "msg": "success", "data": setting}
+            response = {"status": 200, "message": "success", "data": setting}
             return response
 
         @self.router.post("/update")
@@ -32,12 +32,12 @@ class SettingAPI(APIRouter):
             setting.data = payload.get("data", {})
             setting.save()
             setting = model_serializer(setting)
-            response = {"status": 200, "msg": "success", "data": setting}
+            response = {"status": 200, "message": "success", "data": setting}
             return response
 
         @self.router.post("/list")
         def list():
             settings = Setting.select().order_by("create_time")
             settings_list = model_serializer(settings, many=True)
-            response = {"status": 200, "msg": "success", "data": settings_list}
+            response = {"status": 200, "message": "success", "data": settings_list}
             return response

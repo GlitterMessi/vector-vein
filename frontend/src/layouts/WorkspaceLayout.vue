@@ -7,7 +7,7 @@ import { useUserSettingsStore } from "@/stores/userSettings"
 import { getRandomBackgroundImg } from '@/utils/util'
 import { currentTourVersion } from '@/utils/common'
 import { getWorkflows } from "@/utils/workflow"
-import { settingAPI } from "@/api/user"
+import { settingAPI } from "@/api/user.ts"
 import BasicHeader from '@/components/layouts/BasicHeader.vue'
 
 defineComponent({

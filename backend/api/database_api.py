@@ -31,10 +31,10 @@ class DatabaseAPI(APIRouter):
                 vid=payload.get("vid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             database = model_serializer(database)
-            response = {"status": 200, "msg": "success", "data": database}
+            response = {"status": 200, "message": "success", "data": database}
             return response
 
         @self.router.post("/database/update")
@@ -44,16 +44,16 @@ class DatabaseAPI(APIRouter):
                 vid=payload.get("vid", None),
             )
             if status != 200:
-                return {"status": status, "msg": msg, "data": {}}
+                return {"status": status, "message": msg, "data": {}}
             database.name = payload.get("name", database.name)
             database.save()
-            return {"status": 200, "msg": msg}
+            return {"status": 200, "message": msg}
 
         @self.router.post("/database/list")
         def list():
             databases = UserVectorDatabase.select().order_by("create_time")
             databases_list = model_serializer(databases, many=True)
-            response = {"status": 200, "msg": "success", "data": databases_list}
+            response = {"status": 200, "message": "success", "data": databases_list}
             return response
 
         @self.router.post("/database/create")
@@ -73,7 +73,7 @@ class DatabaseAPI(APIRouter):
             database.status = "VALID"
             database.save()
             database = model_serializer(database)
-            response = {"status": 200, "msg": "success", "data": database}
+            response = {"status": 200, "message": "success", "data": database}
             return response
         @self.router.post("/database/delete")
         def delete( payload: dict):
@@ -82,7 +82,7 @@ class DatabaseAPI(APIRouter):
                 vid=payload.get("vid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             self.vdb_queues["request"].put(
                 {
@@ -91,7 +91,7 @@ class DatabaseAPI(APIRouter):
                 }
             )
             database.delete_instance()
-            response = {"status": 200, "msg": "success", "data": {}}
+            response = {"status": 200, "message": "success", "data": {}}
             return response
 
         @self.router.post("/api/database/test/{item_id}")
@@ -114,10 +114,10 @@ class DatabaseObjectAPI(APIRouter):
                 oid=payload.get("oid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             user_object = model_serializer(user_object)
-            response = {"status": 200, "msg": "success", "data": user_object}
+            response = {"status": 200, "message": "success", "data": user_object}
             return response
         @self.router.post("/database_object/create")
         def create( payload: dict):
@@ -201,7 +201,7 @@ class DatabaseObjectAPI(APIRouter):
                 user_object.status = "VA"
                 user_object.save()
             user_object = model_serializer(user_object)
-            response = {"status": 200, "msg": "success", "data": user_object}
+            response = {"status": 200, "message": "success", "data": user_object}
             return response
 
         @self.router.post("/database_object/list")
@@ -221,7 +221,7 @@ class DatabaseObjectAPI(APIRouter):
             user_objects_list = model_serializer(user_objects, many=True)
             response = {
                 "status": 200,
-                "msg": "success",
+                "message": "success",
                 "data": {
                     "objects": user_objects_list,
                     "total": user_objects_count,
@@ -238,7 +238,7 @@ class DatabaseObjectAPI(APIRouter):
                 oid=payload.get("oid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             self.vdb_queues["request"].put(
                 {
@@ -247,5 +247,5 @@ class DatabaseObjectAPI(APIRouter):
                 }
             )
             user_object.delete_instance()
-            response = {"status": 200, "msg": "success", "data": {}}
+            response = {"status": 200, "message": "success", "data": {}}
             return response

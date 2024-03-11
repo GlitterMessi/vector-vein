@@ -35,10 +35,10 @@ class WorkflowAPI(APIRouter):
                 wid=payload.get("wid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             workflow = model_serializer(workflow, manytomany=True)
-            response = {"status": 200, "msg": "success", "data": workflow}
+            response = {"status": 200, "message": "success", "data": workflow}
             return response
 
         @self.router.post("/create")
@@ -69,7 +69,7 @@ class WorkflowAPI(APIRouter):
                     )
                     workflow.tags.add(tag_obj)
             workflow = model_serializer(workflow, manytomany=True)
-            response = {"status": 200, "msg": "success", "data": workflow}
+            response = {"status": 200, "message": "success", "data": workflow}
             return response
 
         @self.router.post("/update")
@@ -80,7 +80,7 @@ class WorkflowAPI(APIRouter):
                 wid=wid,
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             data = payload.get("data", {})
             title = payload.get("title", "").encode("utf16", errors="surrogatepass").decode("utf16")
@@ -100,7 +100,7 @@ class WorkflowAPI(APIRouter):
 
             related_workflows = WorkflowData(data).related_workflows
             if wid in related_workflows.keys():
-                return {"status": 400, "msg": "workflow can not be related to itself", "data": {}}
+                return {"status": 400, "message": "workflow can not be related to itself", "data": {}}
             data["related_workflows"] = related_workflows
 
             # Copy images to static folder and store in url format
@@ -118,7 +118,7 @@ class WorkflowAPI(APIRouter):
             workflow.data = data
             workflow.update_time = datetime.now()
             workflow.save()
-            response = {"status": 200, "msg": "success", "data": model_serializer(workflow, manytomany=True)}
+            response = {"status": 200, "message": "success", "data": model_serializer(workflow, manytomany=True)}
             return response
 
         @self.router.post("/delete")
@@ -128,10 +128,10 @@ class WorkflowAPI(APIRouter):
                 wid=payload.get("wid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             workflow.delete_instance()
-            response = {"status": 200, "msg": "success", "data": {}}
+            response = {"status": 200, "message": "success", "data": {}}
             return response
 
         @self.router.post("/list")
@@ -175,7 +175,7 @@ class WorkflowAPI(APIRouter):
                 )
             response = {
                 "status": 200,
-                "msg": "success",
+                "message": "success",
                 "data": response_data,
             }
             return response
@@ -187,7 +187,7 @@ class WorkflowAPI(APIRouter):
                 wid=payload.get("wid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
 
             workflow_data = payload.get("data", {})
@@ -200,30 +200,30 @@ class WorkflowAPI(APIRouter):
             )
             workflow_data["rid"] = record.rid.hex
             self.worker_queue.put({"data": workflow_data})
-            response = {"status": 200, "msg": "success", "data": {"rid": record.rid.hex}}
+            response = {"status": 200, "message": "success", "data": {"rid": record.rid.hex}}
             return response
 
         @self.router.post("/check_status")
         def check_status( payload:dict):
             rid = payload.get("rid", None)
             if rid is None:
-                response = {"status": 400, "msg": "rid is None", "data": {}}
+                response = {"status": 400, "message": "rid is None", "data": {}}
                 return response
 
             record_qs = WorkflowRunRecord.select().join(Workflow).where(WorkflowRunRecord.rid == rid)
             if not record_qs.exists():
-                response = {"status": 404, "msg": "record not found", "data": {}}
+                response = {"status": 404, "message": "record not found", "data": {}}
                 return response
 
             record = record_qs.first()
             if record.status == "FINISHED":
                 workflow_serializer_data = model_serializer(record.workflow, manytomany=True)
                 workflow_serializer_data["data"] = record.data
-                response = {"status": 200, "msg": record.status, "data": workflow_serializer_data}
+                response = {"status": 200, "message": record.status, "data": workflow_serializer_data}
             elif record.status in ("RUNNING", "QUEUED"):
-                response = {"status": 202, "msg": record.status, "data": {}}
+                response = {"status": 202, "message": record.status, "data": {}}
             else:
-                response = {"status": 500, "msg": record.status, "data": {}}
+                response = {"status": 500, "message": record.status, "data": {}}
             return response
 
         @self.router.post("/add_to_fast_access")
@@ -233,12 +233,12 @@ class WorkflowAPI(APIRouter):
                 wid=payload.get("wid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
 
             workflow.is_fast_access = True
             workflow.save()
-            response = {"status": 200, "msg": "success", "data": {}}
+            response = {"status": 200, "message": "success", "data": {}}
             return response
 
         @self.router.post("/delete_from_fast_access")
@@ -248,12 +248,12 @@ class WorkflowAPI(APIRouter):
                 wid=payload.get("wid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
 
             workflow.is_fast_access = False
             workflow.save()
-            response = {"status": 200, "msg": "success", "data": {}}
+            response = {"status": 200, "message": "success", "data": {}}
             return response
 
 
@@ -270,10 +270,10 @@ class WorkflowTemplateAPI(APIRouter):
                 tid=payload.get("tid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             workflow_template = model_serializer(workflow_template, manytomany=True)
-            response = {"status": 200, "msg": "success", "data": workflow_template}
+            response = {"status": 200, "message": "success", "data": workflow_template}
             return response
 
         @self.router.post("/add")
@@ -283,7 +283,7 @@ class WorkflowTemplateAPI(APIRouter):
                 tid=payload.get("tid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             workflow_template.used_count += 1
             workflow_template.save()
@@ -294,7 +294,7 @@ class WorkflowTemplateAPI(APIRouter):
                 data=workflow_template.data,
             )
             workflow = model_serializer(workflow, manytomany=True)
-            response = {"status": 200, "msg": "success", "data": workflow}
+            response = {"status": 200, "message": "success", "data": workflow}
             return response
 
         @self.router.post("/list")
@@ -316,7 +316,7 @@ class WorkflowTemplateAPI(APIRouter):
                 "page_size": page_size,
                 "page": page_num,
             }
-            response = {"status": 200, "msg": "success", "data": response_data}
+            response = {"status": 200, "message": "success", "data": response_data}
             return response
 
 
@@ -333,10 +333,10 @@ class WorkflowRunRecordAPI(APIRouter):
                 rid=payload.get("rid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             workflow = model_serializer(workflow, manytomany=True)
-            response = {"status": 200, "msg": "success", "data": workflow}
+            response = {"status": 200, "message": "success", "data": workflow}
             return response
 
         @self.router.post("/list")
@@ -362,7 +362,7 @@ class WorkflowRunRecordAPI(APIRouter):
             records_list = model_serializer(records, many=True, manytomany=True)
             response = {
                 "status": 200,
-                "msg": "success",
+                "message": "success",
                 "data": {
                     "records": records_list,
                     "total": records_count,
@@ -386,15 +386,15 @@ class WorkflowTagAPI(APIRouter):
                 tid=payload.get("tid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             workflow_tag = model_serializer(workflow_tag)
-            response = {"status": 200, "msg": "success", "data": workflow_tag}
+            response = {"status": 200, "message": "success", "data": workflow_tag}
             return response
 
         @self.router.post("/list")
         def list( payload:dict):
-            response = {"status": 200, "msg": "success", "data": model_serializer(WorkflowTag.select(), many=True)}
+            response = {"status": 200, "message": "success", "data": model_serializer(WorkflowTag.select(), many=True)}
             return response
 
 
@@ -412,7 +412,7 @@ class WorkflowRunScheduleAPI(APIRouter):
                 wid=payload.get("wid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
             workflow_data = payload.get("data", {})
             workflow.data = workflow_data
@@ -435,7 +435,7 @@ class WorkflowRunScheduleAPI(APIRouter):
             # minute, hour, day_of_month, month_of_year, day_of_week = cron_expression.split(" ")
             # timezone = pytz.timezone(payload.get("timezone", "Asia/Shanghai"))
             # TODO: Add to scheduler
-            response = {"status": 200, "msg": "success", "data": {}}
+            response = {"status": 200, "message": "success", "data": {}}
             return response
 
         @self.router.post("/delete")
@@ -445,16 +445,16 @@ class WorkflowRunScheduleAPI(APIRouter):
                 wid=request.data.get("wid", None),
             )
             if status != 200:
-                response = {"status": status, "msg": msg, "data": {}}
+                response = {"status": status, "message": msg, "data": {}}
                 return response
 
             run_schedule_qs = WorkflowRunSchedule.select().join(Workflow).where(Workflow.id == workflow.id)
             if not run_schedule_qs.exists():
-                response = {"status": 404, "msg": "run schedule not found", "data": {}}
+                response = {"status": 404, "message": "run schedule not found", "data": {}}
                 return response
 
             run_schedule = run_schedule_qs.first()
             # TODO: Remove from scheduler
             run_schedule.delete()
-            response = {"status": 200, "msg": "success", "data": {}}
+            response = {"status": 200, "message": "success", "data": {}}
             return response

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, defineComponent, onBeforeMount } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { workflowTagAPI } from '@/api/workflow'
+import { workflowTagAPI } from '@/api/workflow.ts'
 
 const { t } = useI18n()
 

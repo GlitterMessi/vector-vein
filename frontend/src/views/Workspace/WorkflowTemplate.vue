@@ -5,8 +5,8 @@ import { useRoute, useRouter } from "vue-router"
 import { useUserWorkflowsStore } from "@/stores/userWorkflows"
 import { message } from 'ant-design-vue'
 import VueMarkdown from 'vue-markdown-render'
-import { officialSiteAPI } from '@/api/remote'
-import { workflowAPI } from '@/api/workflow'
+import { officialSiteAPI } from '@/api/remote.ts'
+import { workflowAPI } from '@/api/workflow.ts'
 
 const { t } = useI18n()
 const loading = ref(true)

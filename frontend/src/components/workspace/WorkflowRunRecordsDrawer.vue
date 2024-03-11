@@ -3,7 +3,7 @@ import { ref, reactive, computed } from "vue"
 import { useI18n } from 'vue-i18n'
 import { message } from 'ant-design-vue'
 import { Time, Control, Consume, Tag, ListNumbers } from '@icon-park/vue-next'
-import { workflowRunRecordAPI } from "@/api/workflow"
+import { workflowRunRecordAPI } from "@/api/workflow.ts"
 
 const { t } = useI18n()
 const loading = ref(true)

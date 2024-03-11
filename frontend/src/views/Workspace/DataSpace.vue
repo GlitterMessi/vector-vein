@@ -6,7 +6,7 @@ import { useRouter } from "vue-router"
 import { useUserDatabasesStore } from "@/stores/userDatabase"
 import { message } from 'ant-design-vue'
 import { statusColorMap } from '@/utils/common'
-import { databaseAPI } from '@/api/database'
+import { databaseAPI } from '@/api/database.ts'
 
 const { t } = useI18n()
 const loading = ref(true)

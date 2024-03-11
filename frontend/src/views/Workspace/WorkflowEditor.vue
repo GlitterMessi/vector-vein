@@ -20,10 +20,10 @@ import CodeEditorModal from '@/components/CodeEditorModal.vue'
 import UploaderFieldUse from '@/components/workspace/UploaderFieldUse.vue'
 import UIDesign from '@/components/workspace/UIDesign.vue'
 import VueFlowStyleSettings from '@/components/workspace/VueFlowStyleSettings.vue'
-import { workflowAPI } from "@/api/workflow"
+import { workflowAPI } from "@/api/workflow.ts"
 import { hashObject } from "@/utils/util"
 import { getUIDesignFromWorkflow, nonFormItemsTypes, checkWorkflowDAG } from '@/utils/workflow'
-import { databaseAPI } from "@/api/database"
+import { databaseAPI } from "@/api/database.ts"
 import '@vue-flow/core/dist/style.css'
 import '@vue-flow/core/dist/theme-default.css'
 import '@vue-flow/minimap/dist/style.css'

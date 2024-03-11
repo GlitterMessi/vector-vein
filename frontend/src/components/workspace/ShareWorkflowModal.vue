@@ -38,7 +38,7 @@ import { TypographyLink } from 'ant-design-vue'
 import { storeToRefs } from 'pinia'
 import { useUserSettingsStore } from '@/stores/userSettings'
 import QuestionPopover from "@/components/QuestionPopover.vue"
-import { workflowTemplateAPI } from "@/api/workflow"
+import { workflowTemplateAPI } from "@/api/workflow.ts"
 import MarkdownEditor from '@/components/MarkdownEditor.vue'
 
 defineComponent({

@@ -3,7 +3,7 @@ import { defineComponent, ref, reactive, toRaw, onBeforeMount } from "vue"
 import { useI18n } from 'vue-i18n'
 import { message } from 'ant-design-vue'
 import { useUserSettingsStore } from '@/stores/userSettings'
-import { settingAPI } from "@/api/user"
+import { settingAPI } from "@/api/user.ts"
 
 defineComponent({
   name: 'SettingDrawer',

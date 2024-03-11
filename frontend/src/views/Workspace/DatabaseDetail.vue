@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from "vue-router"
 import { message } from 'ant-design-vue'
 import { Edit, DatabaseSetting, FileCabinet, LoadingFour, AudioFile, PictureOne, Delete, Upload } from '@icon-park/vue-next'
-import { databaseAPI, databaseObjectAPI } from '@/api/database'
+import { databaseAPI, databaseObjectAPI } from '@/api/database.ts'
 
 const { t } = useI18n()
 const loading = ref(true)

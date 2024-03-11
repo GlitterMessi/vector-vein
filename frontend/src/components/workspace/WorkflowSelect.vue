@@ -6,7 +6,7 @@ import { WholeSiteAccelerator, TagOne, Time } from '@icon-park/vue-next'
 import { storeToRefs } from 'pinia'
 import { useUserDatabasesStore } from "@/stores/userDatabase"
 import { getUIDesignFromWorkflow } from '@/utils/workflow'
-import { workflowAPI, workflowTagAPI } from "@/api/workflow"
+import { workflowAPI, workflowTagAPI } from "@/api/workflow.ts"
 
 const data = defineModel()
 const emit = defineEmits(['selected'])

@@ -19,8 +19,8 @@ import TemperatureInput from '@/components/nodes/TemperatureInput.vue'
 import WorkflowRunRecordsDrawer from "@/components/workspace/WorkflowRunRecordsDrawer.vue"
 import TextOutput from "@/components/TextOutput.vue"
 import { getUIDesignFromWorkflow, hasShowFields, nonFormItemsTypes } from '@/utils/workflow'
-import { workflowAPI, workflowRunRecordAPI, workflowScheduleTriggerAPI } from "@/api/workflow"
-import { databaseAPI } from "@/api/database"
+import { workflowAPI, workflowRunRecordAPI, workflowScheduleTriggerAPI } from "@/api/workflow.ts"
+import { databaseAPI } from "@/api/database.ts"
 
 defineComponent({
   name: 'WorkflowSpace',

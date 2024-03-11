@@ -1,7 +1,7 @@
 <template>
   <a-config-provider :locale="locale" :theme="theme">
     <a-spin :spinning="loading">
-      <router-view />
+      <router-view/>
     </a-spin>
   </a-config-provider>
 </template>
@@ -9,16 +9,14 @@
 <script setup>
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import enUS from 'ant-design-vue/es/locale/en_US'
-import { ref, computed, onBeforeMount } from 'vue'
-import { useUserSettingsStore } from '@/stores/userSettings'
+import {ref, computed, onBeforeMount} from 'vue'
+import {useUserSettingsStore} from '@/stores/userSettings'
 
 const loading = ref(true)
 onBeforeMount(async () => {
   // Only wait when in production mode
   if (import.meta.env.PROD) {
-    while (!window.pywebview) {
-      await new Promise((resolve) => setTimeout(resolve, 100))
-    }
+    await new Promise((resolve) => setTimeout(resolve, 100))
   }
   loading.value = false
 })

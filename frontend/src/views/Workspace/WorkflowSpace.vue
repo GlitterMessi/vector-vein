@@ -7,7 +7,7 @@ import { message } from 'ant-design-vue'
 import { useUserSettingsStore } from '@/stores/userSettings'
 import { useUserWorkflowsStore } from "@/stores/userWorkflows"
 import { Home, User } from '@icon-park/vue-next'
-import { workflowAPI } from "@/api/workflow"
+import { workflowAPI } from "@/api/workflow.ts"
 
 const { t } = useI18n()
 const loading = ref(false)

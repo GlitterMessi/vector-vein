@@ -6,7 +6,7 @@ import { message } from 'ant-design-vue'
 import { DocDetail, DatabaseSetting, FileCabinet, Check, Close } from '@icon-park/vue-next'
 import UploaderFieldUse from '@/components/workspace/UploaderFieldUse.vue'
 import QuestionPopover from '@/components/QuestionPopover.vue'
-import { databaseAPI, databaseObjectAPI } from '@/api/database'
+import { databaseAPI, databaseObjectAPI } from '@/api/database.ts'
 
 const { t } = useI18n()
 const loading = ref(true)

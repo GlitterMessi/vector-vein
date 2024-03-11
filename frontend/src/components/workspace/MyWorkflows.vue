@@ -7,7 +7,7 @@ import { WholeSiteAccelerator, TagOne, Time, Control, Plus, Star, Copy, Delete, 
 import { storeToRefs } from 'pinia'
 import { useUserSettingsStore } from '@/stores/userSettings'
 import { useUserWorkflowsStore } from "@/stores/userWorkflows"
-import { workflowAPI, workflowTagAPI } from "@/api/workflow"
+import { workflowAPI, workflowTagAPI } from "@/api/workflow.ts"
 import ShareWorkflowModal from '@/components/workspace/ShareWorkflowModal.vue'
 import NewWorkflowModal from '@/components/workspace/NewWorkflowModal.vue'
 import WorkflowRunRecordsDrawer from "@/components/workspace/WorkflowRunRecordsDrawer.vue"

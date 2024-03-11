@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import VueMarkdown from 'vue-markdown-render'
 import { useUserSettingsStore } from '@/stores/userSettings'
-import { officialSiteAPI } from '@/api/remote'
+import { officialSiteAPI } from '@/api/remote.ts'
 
 const { t } = useI18n()
 const userSettingsStore = useUserSettingsStore()

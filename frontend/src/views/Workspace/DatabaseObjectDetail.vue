@@ -5,7 +5,7 @@ import { useRoute } from "vue-router"
 import { message } from 'ant-design-vue'
 import { DocDetail, DatabaseSetting, FileCabinet, Check, Close } from '@icon-park/vue-next'
 import VueMarkdown from 'vue-markdown-render'
-import { databaseAPI, databaseObjectAPI } from '@/api/database'
+import { databaseAPI, databaseObjectAPI } from '@/api/database.ts'
 
 const { t } = useI18n()
 const loading = ref(true)

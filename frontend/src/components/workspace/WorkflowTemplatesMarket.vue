@@ -6,7 +6,7 @@ import { message } from 'ant-design-vue'
 import { storeToRefs } from 'pinia'
 import { useUserSettingsStore } from '@/stores/userSettings'
 import WorkflowCard from '@/components/workspace/WorkflowCard.vue'
-import { officialSiteAPI } from '@/api/remote'
+import { officialSiteAPI } from '@/api/remote.ts'
 
 defineComponent({
   name: 'WorkflowTemplatesMarket',

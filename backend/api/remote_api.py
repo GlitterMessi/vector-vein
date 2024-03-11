@@ -30,7 +30,7 @@ def request(method: str, path: str, payload=None):
         except Exception as e:
             mprint_error(e)
             try_times += 1
-    return {"status": 500, "msg": "request failed"}
+    return {"status": 500, "message": "request failed"}
 
 
 class OfficialSiteAPI:
@@ -45,7 +45,7 @@ class OfficialSiteAPI:
         official_version = tuple(map(int, official_version.split(".")))
         current_version = tuple(map(int, self.version.split(".")))
         response_data["updatable"] = official_version > current_version
-        response = {"status": 200, "msg": "success", "data": response_data}
+        response = {"status": 200, "message": "success", "data": response_data}
         return response
 
     def list_templates(self, payload):
